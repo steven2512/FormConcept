@@ -40,11 +40,8 @@ function emailCheck(email) {
 
 //check if passwords match
 function passCheck(input1, input2) {
-    if (input1.value === input2.value) {
-        showSuccess(password2)
-    }
-    else {
-        showError(password2, 'Password does not match')
+    if (input1.value !== input2.value) {
+        showError(password2, 'Passwords do not match')
     }
 }
 
