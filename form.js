@@ -5,6 +5,8 @@ const password = document.querySelector('#password')
 const confirm = document.querySelector('#password2')
 const formControl = document.querySelector('.form-control')
 
+
+//invalid input
 function showError(target, message) {
     const formControl = target.parentElement
     const errorMessage = target.nextElementSibling
@@ -13,19 +15,42 @@ function showError(target, message) {
 
 }
 
-function showSuccess(object, message) {
+//valid input
+function showSuccess(target, message) {
     const formControl = target.parentElement
-    const errorMessage = target.nextElementSibling
     formControl.classList.add('success')
-    errorMessage.innerText = message
 }
+
+//check if email is valid
+function validEmailCheck(email) {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+};
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!username.value) {
         showError(username, "Username is required")
     } else {
-        showSuccess(username);
+        showSuccess(username, "");
+    }
+    if (!email.value) {
+        showError(email, "Email is required")
+    } else {
+        showSuccess(email, "");
+    }
+    if (!password.value) {
+        showError(password, "Username is required")
+    } else {
+        showSuccess(password, "");
+    }
+    if (!username.value) {
+        showError(username, "Username is required")
+    } else {
+        showSuccess(username, "");
     }
 })
 
