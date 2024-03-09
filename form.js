@@ -2,7 +2,7 @@ const form = document.querySelector('form')
 const username = document.querySelector('#username')
 const email = document.querySelector('#email')
 const password = document.querySelector('#password')
-const confirm = document.querySelector('#password2')
+const password2 = document.querySelector('#password2')
 const formControl = document.querySelector('.form-control')
 
 
@@ -43,14 +43,14 @@ form.addEventListener('submit', function (e) {
         showSuccess(email, "");
     }
     if (!password.value) {
-        showError(password, "Username is required")
+        showError(password, "Password is required")
     } else {
         showSuccess(password, "");
     }
-    if (!username.value) {
-        showError(username, "Username is required")
+    if (!password2.value) {
+        showError(password2, "Password re-enter is required")
     } else {
-        showSuccess(username, "");
+        showSuccess(password2, "");
     }
 })
 
