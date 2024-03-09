@@ -5,12 +5,19 @@ const password = document.querySelector('#password')
 const password2 = document.querySelector('#password2')
 const formControl = document.querySelector('.form-control')
 
+//return the label of the field
+function fieldLabel(input) {
+    let label = input.previousElementSibling
+    return label.innerText
+}
+
+
 
 //invalid input
 function showError(target, message) {
     const formControl = target.parentElement
     const errorMessage = target.nextElementSibling
-    formControl.classList.add('error')
+    formControl.className = "form-control error"
     errorMessage.innerText = message
 
 }
@@ -18,7 +25,7 @@ function showError(target, message) {
 //valid input
 function showSuccess(target) {
     const formControl = target.parentElement
-    formControl.classList.add('success')
+    formControl.className = "form-control success"
 }
 
 //check if email is valid
@@ -33,18 +40,30 @@ function validEmailCheck(email) {
 function validCheck(targetArr) {
     for (let target of targetArr) {
         if (!target.value.trim()) {
-            let label = target.previousElementSibling;
-            showError(target, `${label.innerText} is required`);
-        }
-        else {
+            showError(target, `${fieldLabel(target)} is required`);
+
+        } else {
             showSuccess(target)
         }
     }
 }
 
+function lengthCheck(target, min, max) {
+    if (target.value.length < min) {
+        showError(target, `${fieldLabel(target)} must be at least ${min} characters`);
+    } else if (target.value.length > max) {
+        showError(target, `${fieldLabel(target)} is at most ${max} characters`);
+    } else {
+        showSuccess(target);
+    }
+}
+
+
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     validCheck([username, email, password, password2]);
+    lengthCheck(username, 5, 15)
+    lengthCheck(password, 6, 15)
 
 })
 
