@@ -16,7 +16,7 @@ function showError(target, message) {
 }
 
 //valid input
-function showSuccess(target, message) {
+function showSuccess(target) {
     const formControl = target.parentElement
     formControl.classList.add('success')
 }
@@ -30,8 +30,21 @@ function validEmailCheck(email) {
         );
 };
 
+function validCheck(targetArr) {
+    for (let target of targetArr) {
+        if (!target.value.trim()) {
+            let label = target.previousElementSibling;
+            showError(target, `${label.innerText} is required`);
+        }
+        else {
+            showSuccess(target)
+        }
+    }
+}
+
 form.addEventListener('submit', function (e) {
     e.preventDefault();
+    validCheck([username, email, password, password2]);
 
 })
 
