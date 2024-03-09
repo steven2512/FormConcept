@@ -29,13 +29,25 @@ function showSuccess(target) {
 }
 
 //check if email is valid
-function validEmailCheck(email) {
-    return String(email)
-        .toLowerCase()
-        .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
+function emailCheck(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(email.value)) {
+        showError(email, `Email is invalid`);
+    } else {
+        showSuccess(email)
+    }
 };
+
+//check if passwords match
+function passCheck(input1, input2) {
+    if (input1.value === input2.value) {
+        showSuccess(password2)
+    }
+    else {
+        showError(password2, 'Password does not match')
+    }
+}
+
 
 function validCheck(targetArr) {
     for (let target of targetArr) {
@@ -64,7 +76,8 @@ form.addEventListener('submit', function (e) {
     validCheck([username, email, password, password2]);
     lengthCheck(username, 5, 15)
     lengthCheck(password, 6, 15)
-
+    emailCheck(email)
+    passCheck(password, password2)
 })
 
 
