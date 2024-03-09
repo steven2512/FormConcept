@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --success--color: green;
+    --error--color: red;
+}
+
 body {
     background-color: #a1cdfa;
     font-family: 'Open Sans', sans-serif;
@@ -50,6 +55,12 @@ h2 {
     font-size: 14px;
 }
 
-/* .form-control input:focus {
-    outline: 0
-} */
+.form-control.success input {
+    border-color: var(--success--color);
+}
+
+.form-control.error input {
+    border-color: var(--error--color);
+}
+
+.form-control small {}
