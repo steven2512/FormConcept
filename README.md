@@ -1,1 +1,1 @@
-A simple website utilizing HTML, CSS, and JS showcasing a typical log in page with various form validations on the client side
+A streamlined website built with HTML, CSS, and JavaScript, featuring a standard login page with comprehensive client-side form validations.
